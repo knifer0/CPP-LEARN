@@ -1,0 +1,41 @@
+#include <iostream>
+#include <fstream>
+using std::fstream;
+using std::ios;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::cerr;
+int main() {
+    string imie,nazwisko,telefon;
+    // ZAPIS DO PLIKU!!!!!/
+    /*cout << "Podaj imie: ";
+    cin >> imie;
+    cout << "Podaj nazwisko: ";
+    cin >> nazwisko;
+    cout << "Podaj telefon: ";
+    cin >> telefon;
+    fstream fp;
+    fp.open("plik.txt",ios::out | ios::app); //otwarcie pliku do  (out) zapisu, app umozliwia aktualizacje --> czyli utworz lub upp
+    fp << imie << endl;
+    fp << nazwisko <<endl;
+    fp << telefon << endl;
+    fp.close();*/
+
+    // ODCZYT Z PLIKU!!!!!/
+    fstream fp;
+    fp.open("plik.txt",ios::in); // in - zapis do programu
+    if(fp.good() == false){
+        cerr << "plik nie istnieje";
+        exit(EXIT_FAILURE);
+    }
+    getline(fp,imie);
+    getline(fp,nazwisko);
+    getline(fp,telefon);
+    fp.close();
+    cout << imie << endl;
+    cout << nazwisko << endl;
+    cout << telefon << endl;
+    return 0;
+}
