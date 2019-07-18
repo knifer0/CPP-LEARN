@@ -1,0 +1,68 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <windows.h>
+#include <ctype.h>
+#include <string.h>
+using std:: cout;
+using std:: cin;
+using std:: endl;
+using std:: cerr;
+using std:: ios;
+using std:: string;
+using std:: fstream;
+void linia(void){
+    for(int i=0; i<40; i++)
+        cout << "-";
+    cout << endl;
+}
+int main() {
+    string tresc[5];
+    string odpA[5], odpB[5], odpC[5], odpD[5];
+    string poprawna[5];
+    int punkty =0;
+    string odpowiedz;
+    fstream plik;
+    plik.open("quiz.txt",ios::in);
+    if(plik.good() == false){
+        cerr << "Nie udalo otworzyc sie pliku";
+        exit(EXIT_FAILURE);
+    }
+    string witamy;
+    linia();
+    getline(plik,witamy);
+    cout << witamy << endl;
+    getline(plik,witamy);
+    cout << witamy << endl;
+    linia();
+    int counter =0;
+    while(getline(plik,tresc[counter])){
+        getline(plik,odpA[counter]);
+        getline(plik,odpB[counter]);
+        getline(plik,odpC[counter]);
+        getline(plik,odpD[counter]);
+        getline(plik,poprawna[counter]);
+        counter++;
+    }
+
+    plik.close();
+    for(int i=0; i<5; i++) {
+        cout << i+1 << ". " << tresc[i] << endl;
+        cout << "a. " <<  odpA[i] << endl;
+        cout << "b. " << odpB[i] << endl;
+        cout << "c. " << odpC[i] << endl;
+        cout << "d. " << odpD[i] << endl << endl;
+        cout << "Podaj odpowiedz: ";
+        cin >> odpowiedz;
+        if(odpowiedz == poprawna[i]){
+            punkty++;
+            cout << "To poprawna odpowiedz! Zdobywasz 1 punkt!" << endl;
+        }
+        else
+            cout << "Niestety! Prawidlowa odpowiedz to " << poprawna[i] << endl;
+        Sleep(3000);
+        system("cls");
+    }
+    cout << "Koniec gry, zdobyles " << punkty << " punkty";
+    return 0;
+}
