@@ -14,7 +14,6 @@ int main(void){
 		suma+=*(tab+i);
 	}
 	float srednia = suma/(float)5;
-	
 	float szukana=*tab;
 	float pomocnicze[5];
 	int licznik =0;
@@ -39,16 +38,14 @@ int main(void){
 			licznik++;
 		}
 	}
-	cout << pomocnicze[licznik-1] << endl << roznica ;
-	if(pomocnicze[licznik-1]-srednia == szukana-srednia ){
-		cout << "Liczy najblizsze sredniej to:";
-		for(int i=0; i<=licznik; i++)
+	if((srednia-pomocnicze[licznik-1] == roznica || pomocnicze[licznik-1]-srednia == roznica) && pomocnicze[licznik-1] != szukana){
+		cout << "Liczy najblizsze sredniej to: ";
+		for(int i=0; i<licznik; i++)
 			cout << pomocnicze[i] << " ";
 		cout << "i " << szukana;
 	}
 	else
-	
-	cout << "Liczba najblizsza sredniej: "<< szukana;
+		cout << "Liczba najblizsza sredniej: "<< szukana;
 	delete [] tab;
 	return 0;
 }
