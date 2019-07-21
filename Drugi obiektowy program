@@ -1,0 +1,41 @@
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+class Samochod{
+	public:
+	string marka,model;
+	unsigned int rocznik;
+	unsigned int przebieg;
+	
+	void wczytaj(){
+		for(int i=0;i<40;i++)
+			cout<<"-";
+		cout<<endl<<"DODAWANIE SAMOCHODU DO BAZY:"<<endl;
+		cout<<"Podaj marke: ";
+		getline(cin,marka);
+		cout<<"Podaj model: ";
+		getline(cin,model);
+		do
+			cout<<"Podaj rocznik: ";
+		while(!(cin>>rocznik));
+		do
+			cout<<"Podaj przebieg: ";
+		while(!(cin>>przebieg));
+		char ch;
+		while((ch=getchar()) !='\n')
+			continue;
+	}
+	void wypisz(){
+		cout<<"Marka: "<<marka<<", model: "<<model <<", rocznik: "<<rocznik<<", przebieg: "<<przebieg<<endl;
+	}
+};
+int main(void){
+	Samochod s1,s2;
+	s1.wczytaj();
+	s2.wczytaj();
+	s1.wypisz();
+	s2.wypisz();
+	return 0;
+}
