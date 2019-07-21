@@ -1,0 +1,37 @@
+#include <iostream>
+#include <math.h>
+using std::cout;
+using std::cin;
+using std::string;
+using std::endl;
+class Zwierze{
+	public:
+	//atrybuty
+	string gatunek, imie;
+	unsigned int wiek;
+	
+	//metody
+	void dodaj_zwierze(){
+		cout<<"DODAWANIE NOWEGO ZWIERZECIA DO BAZY"<<endl;
+		cout<<"Podaj gatunek: ";
+		cin >> gatunek;
+		cout<<"Podaj imie: ";
+		cin >> imie;
+		cout<<"Podaj wiek: ";
+		cin >> wiek;
+	}
+	void daj_glos(){
+		if(gatunek=="kot")
+			cout << imie << " lat "<< wiek<<" : Miau!";	
+		else if(gatunek=="koza")
+			cout << imie << " lat "<< wiek<<" : Beee!!";
+		else if(gatunek=="krowa")
+			cout << imie << " lat "<< wiek<<" : Muuuu!!";
+		else
+			cout<< "Zwierzecia nie ma na farmie";
+	}
+};
+int main(void){
+	Zwierze z1; // tworzymy obiekt o nazwie z1 klasy Zwierze
+	return 0;
+}
