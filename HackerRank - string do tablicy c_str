@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+//zadanie polega na wczytaniu 2 stringow, wyswietleniu ich idlugosci i zlaczeniu tekstu
+// 3 linijka to wypisanie pierwszej litery drugiego slowa, calej reszty pierwszego,
+// a pozniej calej reszty drugiego XD
+using namespace std;
+
+int main(void){
+    string a,b;
+    getline(cin,a);
+    getline(cin,b);
+    cout << a.length() << " " << b.length()<<endl;
+    cout << a+b<<endl;
+    char *wsk1 = new char [a.length()+1];
+    char *wsk2 = new char [b.length()+1];
+    strcpy(wsk1,a.c_str());
+    strcpy(wsk2,b.c_str());
+    char *p,*q;
+    p=wsk1+1;
+    q=wsk2;
+    printf("%c%s %c%s",*q,p,*wsk1,q+1);
+    return 0;
+}
