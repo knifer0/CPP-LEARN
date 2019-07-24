@@ -1,0 +1,25 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+using std::fstream;
+using std::ios;
+int main(void){
+	fstream plik;
+	plik.open("sad.txt",ios::app |ios::in);
+	if(!(plik.good())){
+		cout<<"Nie mozna otworzyc pliku";
+		exit(EXIT_FAILURE);
+	}
+	plik.close();
+//	std::remove("sad.txt"); funkcja do usuniecia pliku
+	if(rename("sad.txt","dupa.txt")==0) // zamienia nazwe pliku(jezeli juz istnieje
+	//taka nazwa to sie nie powiedzie)
+		cout<<"Zamiana nazw pliku sie powiodla";
+	else
+		cout<<"Zamiana nie powioddla sie";
+	return 0;
+}
