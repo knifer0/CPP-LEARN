@@ -1,0 +1,100 @@
+#include <iostream>
+#include <windows.h>
+#include <thread>
+#include <atomic>
+
+using namespace std;
+
+class StrongHold
+{
+
+public:
+
+    void start()
+    {
+        if( !initGame() ) return;
+        thread background( &StrongHold::run , this  );
+
+        string input;
+        while( getline( cin , input ) )
+        {
+            if( input == "1" )
+            {
+                if( gold>5 ){ ++mineLevel ; gold -= 5; };
+            }
+
+            if( input == "2" )
+            {
+                if( gold>10 ){ ++lumberjackLevel ; gold -= 10; };
+            }
+
+            if( input == "3" )
+            {
+                isRun.store(false);
+                background.join();
+                break;
+            }
+        }
+    }
+
+private:
+
+    void run()
+    {
+        while( isRun )
+        {
+            printGameInfo();
+            Sleep(1000);
+            ++day;
+            gold += mineLevel;
+        }
+    }
+
+    bool initGame()
+    {
+        printStartMenu();
+
+        string input;
+        while( getline( cin , input ) )
+        {
+            if( input == "1" ) return true;
+            if( input == "2" ) return false;
+            printStartMenu();
+        }
+    }
+
+    void printStartMenu()
+    {
+        system("cls");
+        cout << "Welcome in StrongHold game!" << endl;
+        cout << "1 - play" << endl;
+        cout << "2 - exit" << endl;
+    }
+
+    void printGameInfo()
+    {
+        system("cls");
+        cout << "Day : " << day << endl;
+        cout << "Gold : " << gold << endl;
+        cout << "Mine Level : " << mineLevel << endl;
+        cout << "Lumberjack Level : " << lumberjackLevel << endl;
+        cout << "1 - add new mine level [5 gold]" << endl;
+        cout << "2 - add new lumberjack level [10 gold]" << endl;
+        cout << "3 - exit game" << endl;
+    }
+
+    int day  {1};
+    atomic<int> gold {0};
+    atomic<int> mineLevel {1};
+    atomic<int> lumberjackLevel {1};
+    atomic<bool> isRun {true};
+
+};
+
+int main()
+{
+    StrongHold game;
+    game.start();
+
+    return 0;
+}
