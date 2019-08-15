@@ -1,1 +1,2 @@
-Napisac implementacje stosu za pomoca szablonu - nie działa przez zły konstruktor
+1.Napisac implementacje stosu za pomoca szablonu - nie działa przez zły konstruktor
+2. z cpp0x z 4 działu przerobić 34 i 35 temat (kontrola błędów, poruszanie się po pliku tekstowym (seekg) zamiast fseek
