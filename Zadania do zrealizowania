@@ -1,2 +1,5 @@
 1.Napisac implementacje stosu za pomoca szablonu - nie działa przez zły konstruktor
 2. z cpp0x z 4 działu przerobić 34 i 35 temat (kontrola błędów, poruszanie się po pliku tekstowym (seekg) zamiast fseek
+3. specjalizacje szablonów
+4. rozdział 12: implementacja stosu obiektowego ofc. strony 598-615, a co za tym idzie zadanie 5,6/621
+5. rozdział 11: zadania z 550 strony, 519-547 strony (bardzo trudne zagadnienia)
