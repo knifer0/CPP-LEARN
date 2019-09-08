@@ -1,0 +1,31 @@
+Imie: Wojtek Nazwisko: Papiez
+Numer legitymacji: 344
+Ocena z fizyki: 4
+Ocena z analizy: 4
+Ocena z informatyki: 4
+Ocena z algebry: 4
+Ocena z angielskiego: 4
+
+Imie: Adrian Nazwisko: Bula
+Numer legitymacji: 345
+Ocena z fizyki: 4
+Ocena z analizy: 3
+Ocena z informatyki: 4
+Ocena z algebry: 5
+Ocena z angielskiego: 6
+
+Imie: Jan Nazwisko: Kowalski
+Numer legitymacji: 444
+Ocena z fizyki: 3
+Ocena z analizy: 3
+Ocena z informatyki: 3
+Ocena z algebry: 3
+Ocena z angielskiego: 3
+
+Imie: Amadeusz Nazwisko: Gawor
+Numer legitymacji: 3433
+Ocena z fizyki: 5
+Ocena z analizy: 5
+Ocena z informatyki: 5
+Ocena z algebry: 5
+Ocena z angielskiego: 1
