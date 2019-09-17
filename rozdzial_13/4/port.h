@@ -2,7 +2,9 @@
 #pragma once
 #include <iostream>
 #include <cstring>
-class Port{
+
+// dalem tutaaaaaaaaaaaaj
+class Port {
 private:
 	char* brand;
 	char style[20];
@@ -12,7 +14,7 @@ public:
 	void ChangeBrand(const Port& p);
 	void ChangeStyle(const Port& p);
 	Port(const char* br = "Brak", const char* st = "Brak", int b = 0);
-	Port(const Port &p);//konstruktor kopiujacy
+	Port(const Port& p);//konstruktor kopiujacy
 	virtual ~Port() {
 		delete[] brand;
 	}
@@ -29,12 +31,15 @@ public:
 	const char* GetBrand()const {
 		return brand;
 	}
-	int BottleCount()const  {
+	int BottleCount()const {
 		return bottles;
 	}
 	virtual void Show()const;
-	friend std::ostream& operator<<(std::ostream& os, const Port& p);
+	inline friend std::ostream& operator<<(std::ostream& os, const Port& p);
+protected:
+	virtual void print(std::ostream& o) const;
 };
+
 
 class VintagePort :public Port {
 private:
@@ -42,7 +47,7 @@ private:
 	int year;
 public:
 	VintagePort();
-	VintagePort(const char* br, const char *st, int b, const char* nn, int y);
+	VintagePort(const char* br, const char* st, int b, const char* nn, int y);
 	VintagePort(const VintagePort& vp);
 	~VintagePort() {
 		delete[] nickname;
@@ -50,5 +55,11 @@ public:
 	VintagePort& operator=(const VintagePort& vp);
 	void Show()const;
 	friend std::ostream& operator<<(std::ostream& os, const VintagePort& vp);
+protected:
+	virtual void print(std::ostream& o) const;
 };
 
+std::ostream& operator<< (std::ostream& o, const Port& p) {
+	p.print(o); // delegate the work to a polymorphic member function.
+	return o;
+} // to koniecznie musi byc w header file bez tego program nie dziala i z inline
