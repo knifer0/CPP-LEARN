@@ -1,0 +1,106 @@
+// w tym kodzie chce utworzyc pelen mechanizm dynamiczny :liste jednokierunkowa lub vectora
+
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <vector>
+using std::ostream;
+using std::istream;
+using std::cout;
+using std::endl;
+using std::string;
+using std::cin;
+class Przyjmowanie_zamowien
+{
+	std::string danie;
+	double czas_przygotowania;
+	double cena;
+public:
+	Przyjmowanie_zamowien(std::string nazwa = "brak", double czas = 0.0, double koszt = 0.0)
+		:danie(nazwa), czas_przygotowania(czas), cena(koszt) {}
+	Przyjmowanie_zamowien(const Przyjmowanie_zamowien& P) : danie(P.danie), czas_przygotowania(P.czas_przygotowania), cena(P.cena){}
+	 Przyjmowanie_zamowien & operator=(Przyjmowanie_zamowien &);
+	friend ostream& operator << (ostream& ekran, Przyjmowanie_zamowien& p);
+	friend  istream& operator >>(istream& ekran, Przyjmowanie_zamowien& p);
+	std::vector <Przyjmowanie_zamowien> tablica;
+};
+/*Przyjmowanie_zamowien & Przyjmowanie_zamowien::operator=(Przyjmowanie_zamowien &)
+{}*/
+
+ostream& operator <<(ostream& ekran, Przyjmowanie_zamowien& p)
+{
+	ekran << "Nazwa dania " << p.danie << " czas przygotowania "
+		<< p.czas_przygotowania << " jego cena: " << p.cena;
+	return ekran;
+
+}
+
+istream& operator >>(istream& ekran, Przyjmowanie_zamowien& p)
+{
+	ekran >> p.danie >> p.cena >> p.czas_przygotowania;
+	return ekran;
+
+}
+
+
+Przyjmowanie_zamowien& Przyjmowanie_zamowien::operator=(Przyjmowanie_zamowien& p) {
+	danie = p.danie;
+	czas_przygotowania = p.czas_przygotowania;
+	cena = p.cena;
+	return *this;
+}
+
+int main() {
+	char wybor;
+	string danie_wczytaj;
+	double czas_wczytaj;
+	double cena_wczytaj;
+	int counter = 0;
+	Przyjmowanie_zamowien* pom;
+	Przyjmowanie_zamowien* k = new Przyjmowanie_zamowien();
+	while (1) {
+		cout << "\n\nAby zamknac program nacisnij 9\n"
+			"Aby wczytac dane nacisnij 1: \n"
+			"Aby odczytac dane nacisnij 2 \n"
+			"aby usunac ostatnio dane dane nacisnij 3 \n";
+
+		cin >> wybor;
+		while (cin.get() != '\n')
+			continue;
+		switch (wybor) {
+		case '1':
+			std::cout << "Podaj kolejno: nazwe dania, czas przygotowania oraz cene\n";
+			getline(cin, danie_wczytaj);
+			while (!(cin >> czas_wczytaj)) {
+				while (cin.get() != '\n')
+					continue;
+				cin.clear();
+				std::cout << "Wprowadz poprawne dane..\n";
+			}
+			while (!(cin >> cena_wczytaj)) {
+				while (cin.get() != '\n')
+					continue;
+				cin.clear();
+				std::cout << "Wprowadz poprawne dane..\n";
+			}
+			pom = new Przyjmowanie_zamowien(danie_wczytaj, czas_wczytaj, cena_wczytaj);
+			k->tablica.push_back(*pom);
+			delete pom;
+			break;
+		case '2':
+			for (int i = 0; i < k->tablica.size(); i++)
+				std::cout << k->tablica[i] << endl;
+			break;
+		case '3':
+			k->tablica.pop_back();
+			break;
+		case '9':
+			exit(EXIT_SUCCESS);
+		default:
+			cout << "Nie mamy takiego wyboru!\n" << endl;
+			break;
+		}
+		
+	}
+	return 0;
+}
