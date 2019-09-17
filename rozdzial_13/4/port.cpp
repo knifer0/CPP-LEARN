@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "port.h"
 
+
 void Port::ChangeBottles(const Port& p) {
 	bottles = p.bottles;
 }
@@ -14,7 +15,7 @@ void Port::ChangeStyle(const Port& p) {
 }
 
 Port::Port(const char* br, const char* st, int b) {
-	brand = new char [int(1+strlen(br))];
+	brand = new char[int(1 + strlen(br))];
 	strcpy(brand, br);
 	strncpy(style, st, 20);
 	bottles = b;
@@ -70,10 +71,10 @@ void Port::Show()const {
 	std::cout << "Butelek: " << bottles << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& os, const Port& p) {
-	os << p.brand << ", " << p.style << ", " << p.bottles << std::endl;
-	return os;
-}
+//std::ostream& operator<<(std::ostream& os, const Port& p) {
+//	os << p.brand << ", " << p.style << ", " << p.bottles << std::endl;
+//	return os;
+//}
 
 
 VintagePort::VintagePort() :Port() {
@@ -88,7 +89,7 @@ VintagePort::VintagePort(const char* br, const char* st, int b, const char* nn, 
 	year = y;
 }
 
-VintagePort::VintagePort(const VintagePort& vp) : Port(vp.GetBrand(),vp.GetStyle(),vp.BottleCount()) {
+VintagePort::VintagePort(const VintagePort& vp) : Port(vp.GetBrand(), vp.GetStyle(), vp.BottleCount()) {
 	nickname = new char[int(strlen(vp.nickname)) + 1];
 	strcpy(nickname, vp.nickname);
 	year = vp.year;
@@ -115,7 +116,16 @@ void VintagePort::Show()const {
 }
 
 std::ostream& operator<<(std::ostream& os, const VintagePort& vp) {
-	
-	os << vp.GetBrand()<<", "<< vp.GetStyle()<<", "<<vp.BottleCount()<<"," << vp.nickname << ", " << vp.year << std::endl;
+
+	os << vp.GetBrand() << ", " << vp.GetStyle() << ", " << vp.BottleCount() << "," << vp.nickname << ", " << vp.year << std::endl;
 	return os;
 }
+
+void Port::print(std::ostream& o) const {
+	o << brand << ", " << style << ", " << bottles << std::endl;
+}
+
+void VintagePort::print(std::ostream& o) const {
+	o << GetBrand() << ", " << GetStyle() << ", " << BottleCount() << "," << nickname << ", " << year << std::endl;
+}
+
