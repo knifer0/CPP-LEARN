@@ -3,7 +3,7 @@
 //1. Zapowiedz definicji klasy Student;
 //2. Dodanie do klasy student zaprzyjaznionych metod klasy Menu, 
 //3. Menu musi byc przed Student
-//4. I to tyle. Jezeli by nie dzialalo, myslalbym nad funkcjami inline - z funkcji Menu, ale kompilator sie nie sprzeciwia wiec nie wiem :P
+//4. I to tyle. Sa dwie mozliwosci: albo funkcje deklaruje inline w tym pliku, a jezeli sa winnym(student.cpp) to nie musza byc inline! Wazne ze nie moga byc inline w klasie
 #pragma once
 #include <iostream>
 #include <fstream>
