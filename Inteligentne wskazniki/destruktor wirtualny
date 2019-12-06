@@ -1,0 +1,47 @@
+#include <iostream>
+class A{
+private:
+	int *wsk;
+public:
+	A(){
+		wsk = new int [200000000];
+	}
+	virtual void drukuj(){
+		std::cout<<"siema";
+	}
+	virtual ~A(){
+		delete [] wsk;
+	}
+};
+
+class B: public A{
+private:
+	int * wsk2;
+public:
+	B():A(){
+		wsk2 = new int [200000000];
+	}
+	void drukuj(){
+		std::cout<<"dasd"<<std::endl;
+	}
+	~B(){
+		delete [] wsk2;
+	}
+};
+
+void fun(){
+	A *obiekt1 = new B();
+	obiekt1->drukuj();
+	delete obiekt1;
+}
+int main(void){
+	fun();
+	char ch;
+	std::cin>>ch;
+	return 0;
+}
+
+//Description of program:
+// Mamy tutaj przyklad dziedziczenia oraz polimorfizmu. Nastepujace pozne wiazanie dynamiczne, poniewaz do wskaznika na obiekt klasy bazowej przypisuje obiekt klasy pochodnej. Dlatego wystepuje tutaj polimorfizm.
+// Jezeli zadaklerujemy wirtualny destruktor to wszystko bedzie w porzadku. Calkowita pamiec zostanie zwolniona. Natomiast jezeli destruktor nie bedzie wirtualny to wywola sie tylko destruktor klasy pochodnej i nie przejdzie
+// juz z powrotem do destruktora klasy bazowej!!! wszystko przez polimorfizm (pozne wiazanie) destruktor zawsze deklarujemy jako wirtualny 
