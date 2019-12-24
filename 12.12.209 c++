@@ -1,0 +1,102 @@
+#include <iostream>
+class A{
+private:
+	int *wsk;
+	int x;
+	int y;
+public:
+	A();
+	A(double xx, double yy);
+	 ~A();
+	void drukuj();
+};
+A::A(){
+	x=0.0;
+	y=0.0;
+	wsk = new int [800000000];
+}
+A::A(double xx, double yy){
+	x=xx;
+	y=yy;
+	wsk = new int [800000000];
+}
+A::~A(){
+	std::cout<<std::endl;
+	std::cout<<"Niszcze obiekt klasy A";
+	delete [] wsk;
+}
+void A::drukuj(){
+	//std::cout<<"x = " <<x <<", y = "<< y << " sizeof(wsk) = "<< "sizeof() = ";
+	//std::cout<<"To jest obiekt klasy bazowej";
+}
+
+class B: public A{
+private:
+	int *wsk2;
+	double z;
+public:
+	B();
+	B(double xx, double yy, double zz);
+	~B();
+	void drukuj();
+	void drukuj2();	
+};
+
+B::B():A(){
+	wsk2 = new int [800000000];
+	z = 0.0;
+}
+B::B(double xx, double yy, double zz):A(xx,yy){
+	wsk2 = new int [800000000];
+	z=zz;
+}
+void B::drukuj(){
+	std::cout<<std::endl;
+	//A::drukuj();
+	//std::cout<<" z = "<<z;
+//	std::cout<<"To jest obiekt klasy pochodnej";
+}
+
+void B::drukuj2(){}
+B::~B(){
+	delete [] wsk2;
+	std::cout<<std::endl;
+	std::cout<<"Niszcze obiekt klasy B";
+}
+void fun();
+void destruktor();
+
+
+
+
+int main(void){
+	int * pp = new int[100000];
+	std::cout<<;
+	//destruktor();
+	char ch;
+	std::cin>>ch;
+	return 0;
+}
+
+
+
+
+
+void fun(){
+	A p1;
+	B p2;
+	A *p3;
+	p3 = &p1;
+	p3->drukuj();
+	p3 = &p2;
+	p3->drukuj();
+	//wyciek pamieci p3, tylko inicjalizujemy wskaznik
+}
+
+void destruktor(){
+	A p1;
+	B p2;
+	A * p3 = new B();
+	std::cout<<"Jaki destruktor?"<<std::endl;
+	delete p3;
+}
