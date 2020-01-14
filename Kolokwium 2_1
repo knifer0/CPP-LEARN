@@ -1,0 +1,40 @@
+#include <iostream>
+
+class Uczelnia{
+private:
+	int ilosc_studentow;
+public:
+	virtual void wypisz() = 0;
+	int getIleStudentow();
+	Uczelnia(int);
+	virtual ~Uczelnia();
+};
+
+class Uczelnia_publiczna : public Uczelnia{
+private:
+	int rok_zalozenia;
+public:
+	void wypisz();
+	Uczelnia_publiczna(int,int);
+	~Uczelnia_publiczna();
+};
+
+Uczelnia::Uczelnia(int ile){ilosc_studentow=ile;}
+int Uczelnia::getIleStudentow(){return ilosc_studentow;}
+Uczelnia::~Uczelnia(){std::cout<<"\nDestroy Uczelnia\n";
+}
+
+Uczelnia_publiczna::Uczelnia_publiczna(int ile, int rok):Uczelnia(ile){
+	rok_zalozenia=rok;
+}
+Uczelnia_publiczna::~Uczelnia_publiczna(){std::cout<<"\nDestroy uczelnia_publiczna";}
+void Uczelnia_publiczna::wypisz(){
+	std::cout<<"Ilosc studentow: "<< getIleStudentow();
+}
+
+int main(void){
+	Uczelnia_publiczna up = Uczelnia_publiczna(20000, 1980);
+	up.wypisz();
+	//mienna.wypisz();
+	return 0;
+}
