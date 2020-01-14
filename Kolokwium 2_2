@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstring>
+class Audycja{
+private:
+	int rok;
+public:
+	virtual void wypisz();
+	Audycja(int);
+	virtual ~Audycja();
+};
+
+void Audycja::wypisz(){std::cout<<"Rok: " << rok << "\n";}
+Audycja::Audycja(int r){rok=r;}
+Audycja::~Audycja(){}
+
+class Reportaz : public Audycja{
+private:
+	char autor[20];
+public:
+	Reportaz(int, char *);
+	~Reportaz();
+	void wypisz();
+};
+
+Reportaz::Reportaz(int r, char *s):Audycja(r){
+	strncpy(autor,s,19);
+}
+
+void Reportaz::wypisz(){
+	Audycja::wypisz();
+	std::cout<<"Autor: "<<autor << "\n";
+}
+
+Reportaz::~Reportaz(){}
+int main(void){
+	Audycja o1(1998);
+	Reportaz o2(2020,"Mickiewicz");
+	Audycja *wsk;
+	wsk = &o1;
+	wsk->wypisz();
+	wsk = &o2;
+	wsk->wypisz();
+	return 0;
+}
