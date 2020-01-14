@@ -35,6 +35,5 @@ void Uczelnia_publiczna::wypisz(){
 int main(void){
 	Uczelnia_publiczna up = Uczelnia_publiczna(20000, 1980);
 	up.wypisz();
-	//mienna.wypisz();
 	return 0;
 }
